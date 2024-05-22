@@ -15,6 +15,9 @@ sudo apt update
 
 sudo apt install python3-venv python3-dev libpq-dev postgresql postgresql-contrib nginx curl
 
+sudo apt install gdal-bin python-gdal python3-gdal
+
+
 # Creating the PostgreSQL database and user
 sudo -u postgres psql
 
@@ -22,9 +25,9 @@ CREATE DATABASE project;
 
 CREATE USER myuser WITH PASSWORD 'password';
 
-ALTER ROLE myprojectuser SET client_encoding TO 'utf8';
+ALTER ROLE myuser SET client_encoding TO 'utf8';
 
-ALTER ROLE myprojectuser SET default_transaction_isolation TO 'read committed';
+ALTER ROLE myuser SET default_transaction_isolation TO 'read committed';
 
 ALTER ROLE myuser SET timezone TO 'UTC';
 
@@ -33,18 +36,27 @@ GRANT ALL PRIVILEGES ON DATABASE project TO myuser;
 \q
 
 # Creating a python Virtual Environment for your Project
+
+sudo mkdir /home/myuser
+
 mkdir /home/myuser/project
 
 cd /home/myuser/project
 
 python3 -m venv myprojectenv
 
-source projectenv/bin/activate
+source myprojectenv/bin/activate
+
+pip install django gunicorn psycopg2-binary
+
+pip install djangorestframework
+
+pip install djangorestframework-gis
 
 django-admin startproject project /home/myuser/project
 
 # Add allowed host in settings.py file inside your django project
-nano /home/myuser/project/project/settings.py
+sudo nano /home/myuser/project/project/settings.py
 
 ALLOWED_HOSTS = ['your_server_domain_or_IP', 'second_domain_or_IP', . . ., 'localhost']
 
@@ -65,6 +77,13 @@ DATABASES = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Add GIS apps
+INSTALLED_APPS = [
+    ...
+    'rest_framework',
+    'rest_framework_gis',
+    ]
+
 import os
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
@@ -83,7 +102,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # Collect static
 
-/home/myuser/myprojectdir/manage.py collectstatic
+/home/myuser/project/manage.py collectstatic
 
 
 # Creating systemd Socket and Service Files for Gunicorn
