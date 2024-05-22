@@ -53,6 +53,8 @@ pip install djangorestframework
 
 pip install djangorestframework-gis
 
+pip install django-leaflet
+
 django-admin startproject project /home/myuser/project
 
 # Add allowed host in settings.py file inside your django project
@@ -82,6 +84,7 @@ INSTALLED_APPS = [
     ...
     'rest_framework',
     'rest_framework_gis',
+    'leaflet',
     ]
 
 import os
@@ -106,6 +109,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 
 # Creating systemd Socket and Service Files for Gunicorn
+
+
 
 
 
