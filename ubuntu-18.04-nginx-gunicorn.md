@@ -90,6 +90,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Add GIS apps
 INSTALLED_APPS = [
     ...
+    'django.contrib.gis',
     'rest_framework',
     'rest_framework_gis',
     'leaflet',
