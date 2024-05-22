@@ -171,7 +171,7 @@ server {
 
         include proxy_params;
         
-        proxy_pass http://unix:/home/myuser/project/project.sock;
+        proxy_pass http://unix:/run/gunicorn.sock;
     }
     
 }
