@@ -25,6 +25,8 @@ sudo apt install gdal-bin python-gdal python3-gdal
 # Creating the PostgreSQL database and user
 sudo -u postgres psql
 
+CREATE EXTENSION postgis;
+
 CREATE DATABASE project;
 
 CREATE USER myuser WITH PASSWORD 'password';
