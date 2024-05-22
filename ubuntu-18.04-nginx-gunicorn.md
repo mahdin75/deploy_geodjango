@@ -15,7 +15,7 @@ sudo passwd myuser
 
 sudo apt update
 
-sudo apt install python3-venv python3-dev libpq-dev postgresql postgresql-contrib nginx curl
+sudo apt install python3-venv python3-dev libpq-dev postgresql postgresql-contrib nginx curl postgis postgresql-10-postgis-2.5
 
 sudo apt install gdal-bin python-gdal python3-gdal
 
