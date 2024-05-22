@@ -108,6 +108,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 /home/myuser/project/manage.py collectstatic
 
 
+# Add folder permissions to user
+
+chown myuser:www-data /home/myuser/ -R
+
+sudo chmod 775 /home/myuser -R
+
+
 # Creating systemd Socket and Service Files for Gunicorn
 sudo nano /etc/systemd/system/gunicorn.service
 
