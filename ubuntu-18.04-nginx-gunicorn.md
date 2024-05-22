@@ -5,6 +5,8 @@
 
 sudo useradd -g www-data myuser
 
+sudo adduser myuser www-data
+
 # set the password for myuser user 
 
 sudo passwd myuser
