@@ -129,7 +129,7 @@ Requires=gunicorn.socket
 After=network.target
 
 [Service]
-User=myuser
+User=root
 Group=www-data
 WorkingDirectory=/home/myuser/project
 ExecStart=/home/myuser/project/myprojectenv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/myuser/project/project.sock project.wsgi:application
