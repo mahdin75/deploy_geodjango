@@ -34,7 +34,7 @@ GRANT ALL PRIVILEGES ON DATABASE project TO myuser;
 # Creating a python Virtual Environment for your Project
 mkdir /home/myuser/project
 
-cd ~/project
+cd /home/myuser/project
 
 python3 -m venv myprojectenv
 
