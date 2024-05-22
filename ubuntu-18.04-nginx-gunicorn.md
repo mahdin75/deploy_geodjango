@@ -109,9 +109,32 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 
 # Creating systemd Socket and Service Files for Gunicorn
+sudo nano /etc/systemd/system/gunicorn.service
 
 
+# add following to the file:
 
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User=myuser
+Group=www-data
+WorkingDirectory=/home/myuser/project
+ExecStart=/home/myuser/project/myprojectenv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/myuser/project/project.sock project.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+
+
+# Create Symlink
+sudo systemctl enable gunicorn.service
+
+
+# Start Gunicorn using systemctl
+sudo systemctl start gunicorn
 
 
 
