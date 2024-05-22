@@ -1,7 +1,16 @@
 # You may need to edit the source list in the following file.
 #sudo nano /etc/apt/sources.list
 
+# add user 
+
+sudo useradd -g www-data myuser
+
+# set the password for myuser user 
+
+sudo passwd myuser
+
 # Installing the packages from the Ubuntu repositories
+
 sudo apt update
 
 sudo apt install python3-venv python3-dev libpq-dev postgresql postgresql-contrib nginx curl
@@ -23,7 +32,7 @@ GRANT ALL PRIVILEGES ON DATABASE project TO myuser;
 \q
 
 # Creating a python Virtual Environment for your Project
-mkdir ~/project
+mkdir /home/myuser/project
 
 cd ~/project
 
@@ -31,10 +40,10 @@ python3 -m venv myprojectenv
 
 source projectenv/bin/activate
 
-django-admin startproject project ~/project
+django-admin startproject project /home/myuser/project
 
 # Add allowed host in settings.py file inside your django project
-nano ~/project/project/settings.py
+nano /home/myuser/project/project/settings.py
 
 ALLOWED_HOSTS = ['your_server_domain_or_IP', 'second_domain_or_IP', . . ., 'localhost']
 
@@ -62,18 +71,18 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # Migrate database
 
-~/project/manage.py makemigrations
+/home/myuser/project/manage.py makemigrations
 
-~/project/manage.py migrate
+/home/myuser/project/manage.py migrate
 
 
 # Create superuser
 
-~/project/manage.py createsuperuser
+/home/myuser/project/manage.py createsuperuser
 
 # Collect static
 
-~/myprojectdir/manage.py collectstatic
+/home/myuser/myprojectdir/manage.py collectstatic
 
 
 # Creating systemd Socket and Service Files for Gunicorn
