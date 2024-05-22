@@ -137,4 +137,47 @@ sudo systemctl enable gunicorn.service
 sudo systemctl start gunicorn
 
 
+# Nginx config
+
+sudo nano /etc/nginx/sites-available/project
+
+
+
+# Add the following to the file:
+
+server {
+
+    listen 80;
+    
+    server_name server_domain_or_IP;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    
+    location /static/ {
+    
+        root /home/myuser/project;
+    }
+
+    location / {
+
+        include proxy_params;
+        
+        proxy_pass http://unix:/home/myuser/project/project.sock;
+    }
+    
+}
+
+# Link directory
+
+sudo ln -s /etc/nginx/sites-available/project /etc/nginx/sites-enabled
+
+# Nginx restart
+
+sudo systemctl restart nginx
+
+# Nginx full
+
+sudo ufw allow 'Nginx Full'
+
+
 
