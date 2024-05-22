@@ -17,6 +17,7 @@ sudo apt install python3-venv python3-dev libpq-dev postgresql postgresql-contri
 
 # Creating the PostgreSQL database and user
 sudo -u postgres psql
+
 CREATE DATABASE project;
 
 CREATE USER myuser WITH PASSWORD 'password';
