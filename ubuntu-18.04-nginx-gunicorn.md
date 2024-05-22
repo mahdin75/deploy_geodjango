@@ -1,4 +1,4 @@
-# You may need to add the following to edit the source list in the following file.
+# You may need to edit the source list in the following file.
 #sudo nano /etc/apt/sources.list
 
 # Installing the packages from the Ubuntu repositories
