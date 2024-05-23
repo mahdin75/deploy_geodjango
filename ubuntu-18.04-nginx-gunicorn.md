@@ -149,6 +149,7 @@ WorkingDirectory=/home/myuser/project
 ExecStart=/home/myuser/project/myprojectenv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/myuser/project/project.sock project.wsgi:application
 
 [Install]
+
 WantedBy=multi-user.target
 
 
