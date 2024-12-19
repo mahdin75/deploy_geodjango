@@ -60,7 +60,9 @@ pip install django gunicorn psycopg2-binary
 
 pip install djangorestframework
 
-pip install djangorestframework-gis
+# Verify Package Compatibility
+# Check this website https://pypi.org/project/djangorestframework-gis/
+pip install djangorestframework-gis = 1.0  
 
 pip install django-leaflet
 
