@@ -89,6 +89,10 @@ DATABASES = {
 # Set STATIC_ROOT var
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+import os
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
 
 # Add GIS apps
 INSTALLED_APPS = [
@@ -98,10 +102,6 @@ INSTALLED_APPS = [
     'rest_framework_gis',
     'leaflet',
     ]
-
-import os
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 
 # Migrate database
