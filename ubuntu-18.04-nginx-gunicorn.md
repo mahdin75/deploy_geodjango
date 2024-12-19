@@ -155,6 +155,20 @@ ExecStart=/home/myuser/project/myprojectenv/bin/gunicorn --access-logfile - --wo
 
 WantedBy=multi-user.target
 
+# create socket
+sudo nano /etc/systemd/system/gunicorn.socket
+
+[Unit]
+
+Description=gunicorn socket
+
+[Socket]
+
+ListenStream=/home/myuser/project/project.sock
+
+[Install]
+
+WantedBy=sockets.target
 
 # Create Symlink
 sudo systemctl enable gunicorn.service
